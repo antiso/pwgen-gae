@@ -1,4 +1,4 @@
 pwgen-gae
 =========
 
-Online pwgen
+Online pwgen. Based on Jpwgen library https://bitbucket.org/antiso/jpwgen
