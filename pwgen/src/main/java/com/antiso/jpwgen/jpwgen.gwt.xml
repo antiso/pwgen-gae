@@ -3,7 +3,8 @@
 <module rename-to="jpwgen">
 	<inherits name="com.google.gwt.user.User" />
 	<inherits name="com.google.gwt.i18n.I18N"/>
-	
+    <inherits name="com.google.gwt.logging.Logging"/>
+
 	<extend-property name="locale" values="en"/>
 	<extend-property name="locale" values="ru"/>
 	<set-property-fallback name="locale" value="en"/>

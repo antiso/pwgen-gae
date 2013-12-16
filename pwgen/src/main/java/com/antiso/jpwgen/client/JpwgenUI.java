@@ -1,9 +1,11 @@
 package com.antiso.jpwgen.client;
 
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.Style.BorderStyle;
 import com.google.gwt.dom.client.Style.Position;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -12,6 +14,7 @@ import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.SimplePager;
 import com.google.gwt.user.cellview.client.SimplePager.TextLocation;
 import com.google.gwt.user.cellview.client.TextColumn;
+import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DecoratorPanel;
@@ -40,8 +43,10 @@ public class JpwgenUI implements EntryPoint {
 	private SimpleCheckBox includeNumbersBox;
 	private IntegerBox passwordLenghtBox;
 	private IntegerBox passwordsCount;
+    private int charWidth;
+    Logger log = Logger.getLogger("jpwgen");
 
-	public void onModuleLoad() {
+    public void onModuleLoad() {
 		RootPanel mainPanel = RootPanel.get("mainPanel");
 		mainPanel.getElement().getStyle().setPosition(Position.RELATIVE);
 
@@ -144,7 +149,7 @@ public class JpwgenUI implements EntryPoint {
 		horizontalPanel_1.add(lblNewLabel);
 
 		passwordsTable = new CellTable<String[]>();
-		passwordsTable.setPageSize(25);
+		passwordsTable.setPageSize(16);
 		data = new ListDataProvider<String[]>();
 		data.addDataDisplay(passwordsTable);
 		verticalPanel.add(passwordsTable);
@@ -161,7 +166,11 @@ public class JpwgenUI implements EntryPoint {
 		verticalPanel.add(pager);
 		verticalPanel.setCellHorizontalAlignment(pager,
 				HasHorizontalAlignment.ALIGN_CENTER);
-		pager.setVisible(false);
+        Element testEl =  DOM.getElementById("testcell");
+        charWidth = (testEl.getOffsetWidth()-2)/8;
+        log.info("Charwidth: " + charWidth);
+        testEl.setAttribute("hidden","true");
+        pager.setVisible(false);
 
 	}
 
@@ -200,7 +209,8 @@ public class JpwgenUI implements EntryPoint {
 
 						InlineHTML tmpCell = new InlineHTML(result[0]);
 						verticalPanel.add(tmpCell);
-						int columnsCount = 560 / (tmpCell.getOffsetWidth() + 34);
+						int columnsCount = 560 / (charWidth*passwordLenghtBox.getValue() + 34/* border + padding*/);
+                        log.info("Password cell width: " + charWidth*passwordLenghtBox.getValue());
 						tmpCell.getElement().getStyle()
 								.setBorderStyle(BorderStyle.SOLID);
 						verticalPanel.remove(tmpCell);
@@ -217,6 +227,9 @@ public class JpwgenUI implements EntryPoint {
 
 									}, tmp == 0 ? "№" : String.valueOf(tmp - 1));
 						}
+                        for (int i=1;i<passwordsTable.getColumnCount();i++) {
+                            passwordsTable.getColumn(i).setCellStyleNames("password");
+                        }
 						passwordsTable.addColumnStyleName(0, "rightBordered");
 						passwordsTable.getColumn(0).setCellStyleNames(
 								"rightBordered");

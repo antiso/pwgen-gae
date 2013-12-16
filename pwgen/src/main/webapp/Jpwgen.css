@@ -1,71 +1,89 @@
 /** Add css rules here for your application. */
 
+@import url(http://fonts.googleapis.com/css?family=Noto+Serif|Droid+Serif|PT+Mono);
 
 /** Example rules used by the template application (remove for your app) */
+
+body {
+    font-family: 'Noto Serif', serif;
+}
+
 h1 {
-  font-size: 2em;
-  font-weight: bold;
-  color: #777777;
-  margin: 40px 0px 70px;
-  align: center;
+    font-size: 2em;
+    font-weight: bold;
+    color: #777777;
+    margin: 40px 0px 70px;
+    align: center;
+
 }
 
 .sendButton {
-  display: block;
-  font-size: 16pt;
+    display: block;
+    font-size: 16pt;
 }
 
 /** Most GWT widgets already have a style name defined */
 .gwt-DialogBox {
-  width: 400px;
+    width: 400px;
 }
 
 .dialogVPanel {
-  margin: 5px;
+    margin: 5px;
 }
 
 .serverResponseLabelError {
-  color: red;
+    color: red;
 }
 
 /** Set ids using widget.getElement().setId("idOfElement") */
 #closeButton {
-  margin: 15px 6px 6px;
+    margin: 15px 6px 6px;
 }
 #mainPanel {
-	border: 2px solid black;
-	border-radius: 5px;
-	width: 600px;
-	height: 800px;
-	box-shadow: 10px 10px 5px #888888;
-	margin-left:auto;
-	margin-right:auto;
+    border: 2px solid black;
+    border-radius: 5px;
+    width: 600px;
+    height: 650px;
+    box-shadow: 10px 10px 5px #888888;
+    margin-left:auto;
+    margin-right:auto;
 }
 .gwt-Button {
-	padding: none;
-  	display: block;
-	width: 70px;
-	height: 27px;
-	vertical-align: middle;
-	text-align: center;	
+    padding: none;
+    display: block;
+    width: 70px;
+    height: 27px;
+    vertical-align: middle;
+    text-align: center;
+    font-family: 'Droid Serif', serif;
 }
 .buttonPanel {
-	margin-top: 12px;
-	
+    margin-top: 12px;
+
 }
 .withSpacer {
-	mrgin-right: 10px;
+    mrgin-right: 10px;
 }
 .gwt-Label {
-	font-size: smaller;
-	vertical-align: bottom;
+    font-size: smaller;
+    vertical-align: bottom;
+    font-family: 'Droid Serif', serif;
 }
 .rightBordered,  td.rightBordered{
-	border-right-style: solid;
-	border-right-width: 2px;
-	border-collapse: separate;
-	border-right-color: rgb(111, 114, 119);
+    border-right-style: solid;
+    border-right-width: 2px;
+    border-collapse: separate;
+    border-right-color: rgb(111, 114, 119);
 }
 .gwt-TextArea {
-	height: 80px;
+    height: 80px;
+}
+.footer {
+    position: relative;
+    margin-top:10px;
+    text-align:center;
+    width: 100%;
+}
+.password {
+    font-family: 'PT Mono', sans-serif;
 }
